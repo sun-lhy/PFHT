@@ -1,0 +1,36 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: PFHT - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\Users\lucky\AppData\Local\Temp\RSP2B3B.tmp" with contents
+[
+/nologo /MLd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_MBCS" /Fp"Debug/PFHT.pch" /YX /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"J:\Hash  with C\PFHT\hashFunc.cpp"
+]
+Creating command line "cl.exe @C:\Users\lucky\AppData\Local\Temp\RSP2B3B.tmp" 
+<h3>Output Window</h3>
+Compiling...
+hashFunc.cpp
+J:\Hash  with C\PFHT\hashFunc.cpp(10) : error C2228: left of '.length' must have class/struct/union type
+J:\Hash  with C\PFHT\hashFunc.cpp(10) : error C2228: left of '.length' must have class/struct/union type
+J:\Hash  with C\PFHT\hashFunc.cpp(11) : error C2228: left of '.charAt' must have class/struct/union type
+J:\Hash  with C\PFHT\hashFunc.cpp(19) : error C2228: left of '.length' must have class/struct/union type
+J:\Hash  with C\PFHT\hashFunc.cpp(20) : error C2228: left of '.charAt' must have class/struct/union type
+J:\Hash  with C\PFHT\hashFunc.cpp(36) : error C2440: 'initializing' : cannot convert from 'char [6]' to 'char'
+        This conversion requires a reinterpret_cast, a C-style cast or function-style cast
+J:\Hash  with C\PFHT\hashFunc.cpp(41) : error C2100: illegal indirection
+J:\Hash  with C\PFHT\hashFunc.cpp(41) : error C2664: 'hashcode' : cannot convert parameter 1 from 'int' to 'const int *'
+        Conversion from integral type to pointer type requires reinterpret_cast, C-style cast or function-style cast
+Ö´ÐÐ cl.exe Ê±³ö´í.
+
+
+
+<h3>Results</h3>
+hashFunc.obj - 1 error(s), 0 warning(s)
+</pre>
+</body>
+</html>
