@@ -44,7 +44,7 @@ int hashcode(uint8_t *buffer, int length, int size)
 
 void main()
 {
-	char s[] = {1,1};
+	char s[] = {1,1,1};
 	int len = sizeof(s);
 	int size = 100;
 	int ans = hashcode((uint8_t *)s,len,size);
