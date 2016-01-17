@@ -3,42 +3,52 @@
 *                          (c)copyright
 *                         All Right Reserved 
 **********************************************************************/  
+#include "hashFunc.h"
+
 //加法hash
-int additiveHash(char key, int prime)
- {
-  int hash, i,length;
-  for (hash = key.length(), i = 0; i < key.length(); i++)
-   hash += key.charAt(i);
-  return (hash % prime);
- }
-//乘法hash
- int bernstein(char key)
- {
-   int hash = 0;
-   int i;
-   for (i=0; i<key.length(); ++i) 
-	   hash = 33*hash + key.charAt(i);
-   return hash;
- }
-//数组hash
- int hashcode(const int *v)
+int additiveHash(uint8_t *buffer, int length, int size)
 {
-int hash = 0,k,prime;
-for(int i=0; i<k; i++)
-hash=((hash<<2)+(v[i]>>4))^(v[i]<<10);
-hash = hash % prime;
-hash = hash < 0 ? hash + prime : hash;
-return hash;
+	int hash=0;
+	int i;
+	for (i = 0; i < length; i++)
+	{
+		hash += *(buffer+i);
+	}
+	return (hash % size);
+}
+
+//乘法hash
+int bernstein(uint8_t *buffer, int length, int size)
+{
+	int a = 33;
+	int hash = 0;
+	int i;
+	for (i = 0; i < length; i++) 
+		hash = a*hash + *(buffer+i);
+	return (hash % size);
+}
+ 
+//数组hash
+int hashcode(uint8_t *buffer, int length, int size)
+{
+	int hash = 0;
+	int i;
+	for(i = 0; i < length; i++)
+	{
+		hash=((hash<<2)+(buffer[i]>>4))^(buffer[i]<<10);
+	}
+	hash = hash % size;
+	hash = hash < 0 ? hash + size : hash;
+	return hash;
 }
 
 void main()
 {
-    char  key="hello" ;
-	int prime=7;
-	int v[5]={1,2,3,4,5};
-	additiveHash(key,prime);
-	bernstein(key);
-	hashcode(*v[5]);
+	char s[] = {1,1};
+	int len = sizeof(s);
+	int size = 100;
+	int ans = hashcode((uint8_t *)s,len,size);
+	printf("%d\n",ans);
 }
 
 
