@@ -15,7 +15,7 @@
 typedef struct _Link_Node    
 {    
     uint8_t temp;  
-	unit16_t h_temp;
+	uint16_t h_temp;
     struct _Link_Node *next;    
 }Link_Node,*Link_Node_Ptr; 
 
