@@ -30,3 +30,7 @@
 
 # Debug files
 *.dSYM/
+*.ilk
+*.idb
+*.pdb
+*.pdb
