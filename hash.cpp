@@ -161,5 +161,9 @@ void main()
 	insertItem(s3);
 	printTable();
 	printf("\n");
+<<<<<<< HEAD
 }
 
+=======
+}
+>>>>>>> refs/remotes/origin/master
