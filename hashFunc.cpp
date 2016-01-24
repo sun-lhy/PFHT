@@ -27,7 +27,7 @@ int bernstein(uint8_t *buffer, int length, int size)
 		hash = a*hash + *(buffer+i);
 	return (hash % size);
 }
- 
+
 //Êý×éhash
 int hashcode(uint8_t *buffer, int length, int size)
 {
@@ -42,15 +42,28 @@ int hashcode(uint8_t *buffer, int length, int size)
 	return hash;
 }
 
-void main()
+
+int hashFun(int index,uint8_t *buffer, int length, int size)
 {
-	char s[] = {1};
-	int len = sizeof(s);
-	int size = 100;
-	int ans = hashcode((uint8_t *)s,len,size);
-	printf("%d\n",ans);
+	switch(index)
+	{
+	case 0:{return additiveHash(buffer,length,size);}
+	case 1:{return bernstein(buffer,length,size);}
+	case 2:{return hashcode(buffer,length,size);}
+	default:{return NULL;}
+	}
 }
 
+/*
+void main()
+{
+char s[] = {1};
+int len = sizeof(s);
+int size = 100;
+int ans = hashcode((uint8_t *)s,len,size);
+printf("%d\n",ans);
+}
+*/
 
 
 
