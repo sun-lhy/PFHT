@@ -95,10 +95,18 @@ SOURCE=.\hash_1.c
 
 SOURCE=.\hashFunc.cpp
 # End Source File
+# Begin Source File
+
+SOURCE=.\Insert_Item.cpp
+# End Source File
 # End Group
 # Begin Group "Header Files"
 
 # PROP Default_Filter "h;hpp;hxx;hm;inl"
+# Begin Source File
+
+SOURCE=.\hash_1.h
+# End Source File
 # Begin Source File
 
 SOURCE=.\hashFunc.h

@@ -6,29 +6,22 @@
 --------------------Configuration: PFHT - Win32 Debug--------------------
 </h3>
 <h3>Command Lines</h3>
-Creating temporary file "C:\Users\yinhao\AppData\Local\Temp\RSPEEAA.tmp" with contents
+Creating temporary file "C:\Users\lucky\AppData\Local\Temp\RSP96EC.tmp" with contents
 [
 /nologo /MLd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_MBCS" /Fp"Debug/PFHT.pch" /YX /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
-"E:\GitHub\PFHT\hash_1.c"
+"J:\GitHub\PFHT\Insert_Item.cpp"
 ]
-Creating command line "cl.exe @C:\Users\yinhao\AppData\Local\Temp\RSPEEAA.tmp" 
-Creating temporary file "C:\Users\yinhao\AppData\Local\Temp\RSPEEAB.tmp" with contents
-[
-kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:yes /pdb:"Debug/PFHT.pdb" /debug /machine:I386 /out:"Debug/PFHT.exe" /pdbtype:sept 
-.\Debug\hash.obj
-.\Debug\hash_1.obj
-.\Debug\hashFunc.obj
-]
-Creating command line "link.exe @C:\Users\yinhao\AppData\Local\Temp\RSPEEAB.tmp"
+Creating command line "cl.exe @C:\Users\lucky\AppData\Local\Temp\RSP96EC.tmp" 
 <h3>Output Window</h3>
 Compiling...
-hash_1.c
-Linking...
+Insert_Item.cpp
+J:\GitHub\PFHT\Insert_Item.cpp(32) : warning C4101: 'x' : unreferenced local variable
+J:\GitHub\PFHT\Insert_Item.cpp(58) : warning C4715: 'Insert_Item' : not all control paths return a value
 
 
 
 <h3>Results</h3>
-PFHT.exe - 0 error(s), 0 warning(s)
+Insert_Item.obj - 0 error(s), 0 warning(s)
 </pre>
 </body>
 </html>

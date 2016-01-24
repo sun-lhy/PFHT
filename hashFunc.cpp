@@ -41,7 +41,7 @@ int hashcode(uint8_t *buffer, int length, int size)
 	hash = hash < 0 ? hash + size : hash;
 	return hash;
 }
-
+/*
 void main()
 {
 	char s[] = {1,1,1};
@@ -51,7 +51,7 @@ void main()
 	printf("%d\n",ans);
 }
 
-
+*/
 
 
 
