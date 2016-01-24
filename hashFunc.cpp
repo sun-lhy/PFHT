@@ -1,8 +1,3 @@
-/********************************************************************* 
-*                          常用hash函数 
-*                          (c)copyright
-*                         All Right Reserved 
-**********************************************************************/  
 #include "hashFunc.h"
 
 //加法hash
@@ -42,16 +37,24 @@ int hashcode(uint8_t *buffer, int length, int size)
 	return hash;
 }
 
-void main()
+int hashFun(int index,uint8_t *buffer, int length, int size)
 {
-	char s[] = {1,1};
-	int len = sizeof(s);
-	int size = 100;
-	int ans = hashcode((uint8_t *)s,len,size);
-	printf("%d\n",ans);
+	switch(index)
+	{
+	case 0:{return additiveHash(buffer,length,size);}
+	case 1:{return bernstein(buffer,length,size);}
+	case 2:{return hashcode(buffer,length,size);}
+	default:{return NULL;}
+	}
 }
 
-
-
-
-
+/*
+void main()
+{
+char s[] = {1};
+int len = sizeof(s);
+int size = 100;
+int ans = hashcode((uint8_t *)s,len,size);
+printf("%d\n",ans);
+}
+*/
