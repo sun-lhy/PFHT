@@ -44,6 +44,32 @@ Link_Node_Ptr insertNode(Link_Node_Ptr head,Link_Node_Ptr node)
 	p->next = head;
 	return node;
 }
+//删除一个链表
+Link_Node_Ptr deleteNode(Link_Node_Ptr head,Link_Node_Ptr node)
+{
+	Link_Node_Ptr p=head->next;
+	Link_Node_Ptr q=p->next;
+
+	if(p->data==node->data)
+	{head->next=p->next;
+	free(p);}
+	else
+	 {
+	  while(q!=NULL)
+	  {
+		  if(q->data==node->data)
+		  {	p->next=q->next;
+			free(q);
+		  }
+		  else
+		  {	p=q;
+			q=q->next;
+				break;
+		  }
+		  
+	  }
+	}
+}
 
 //获取链表中的一个节点
 Link_Node_Ptr getNode(Link_Node_Ptr *head)
@@ -134,6 +160,25 @@ void insertItem(char *data)
 	}	
 }
 
+void deleteItem(char *data)
+{
+	int i;
+	int index;
+	Link_Node_Ptr node;
+	Link_Node_Ptr x = createNode(data);
+	Link_Node_Ptr Y = NULL;
+		if(hashCompare(i,x)==0)
+		{
+			int bucket = hashFun(i,(uint8_t*)x->data,strlen(x->data),HASH_TABLE_LEN);
+			
+
+			
+			Y = insertNode(Hash_Table[bucket]->node,Y);
+			Hash_Table[bucket]->counter --;
+			Hash_Table[bucket]->node = NULL;
+		}
+
+
 void printTable()
 {
 	int i;
@@ -150,8 +195,8 @@ void main()
 {
 	initTable();
 	char s[]="123";
-	//insertItem(s);
-//	printTable();
+	insertItem(s);
+	printTable();
 	printf("\n");
 	char s2[]="233";
 	insertItem(s2);
@@ -160,6 +205,7 @@ void main()
 	char s3[]="233";
 	insertItem(s3);
 	printTable();
+	
 	printf("\n");
 
 }
