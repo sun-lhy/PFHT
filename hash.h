@@ -23,4 +23,15 @@ typedef struct _Hash_Header
     struct _Link_Node *node;    
 }Hash_Header,*Hash_Header_Ptr; 
 
+
+#define HASH_TABLE_LEN  10  
+#define HASH_FUN_COUNT  3
+
+Link_Node_Ptr createNode(char *data);
+Link_Node_Ptr insertNode(Link_Node_Ptr head,Link_Node_Ptr node);
+Link_Node_Ptr deleteNode(Link_Node_Ptr head,Link_Node_Ptr node);
+Link_Node_Ptr getNode(Link_Node_Ptr *head);
+void printNode(Link_Node_Ptr head);
+int hashCompare(int i,Link_Node_Ptr x);
+
 #endif /* _MYHEAD_H_ */
