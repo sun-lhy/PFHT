@@ -1,27 +1,6 @@
 #include "hash.h"
 
 
-#define HASH_TABLE_LEN  10  
-#define HASH_FUN_COUNT  3  
-
-/********************************************************************* 
-*                           全局变量 
-**********************************************************************/  
-
-//哈希表  
-Hash_Header_Ptr Hash_Table[HASH_TABLE_LEN];  
-
-void initTable()
-{
-	int i;
-	for(i=0;i<HASH_TABLE_LEN;i++)
-	{
-		Hash_Table[i] = (Hash_Header_Ptr)malloc(sizeof(Hash_Header));
-		Hash_Table[i]->counter = 0;
-		Hash_Table[i]->node = NULL;
-	}
-}
-
 /********************************************************************* 
 *                           函数 
 **********************************************************************/ 
@@ -40,35 +19,40 @@ Link_Node_Ptr createNode(char *data)
 Link_Node_Ptr insertNode(Link_Node_Ptr head,Link_Node_Ptr node)
 {
 	Link_Node_Ptr p = node;
+	if(p==NULL)return head;		//误漏
 	while(p->next!=NULL)p=p->next;
 	p->next = head;
 	return node;
 }
+
 //删除一个链表
 Link_Node_Ptr deleteNode(Link_Node_Ptr head,Link_Node_Ptr node)
 {
-	Link_Node_Ptr p=head->next;
+	if(head==NULL)return head;
+	Link_Node_Ptr p=head;
 	Link_Node_Ptr q=p->next;
-
-	if(p->data==node->data)
-	{head->next=p->next;
-	free(p);}
-	else
-	 {
-	  while(q!=NULL)
-	  {
-		  if(q->data==node->data)
-		  {	p->next=q->next;
-			free(q);
-		  }
-		  else
-		  {	p=q;
-			q=q->next;
-				break;
-		  }
-		  
-	  }
+	
+	//删除头节点
+	if(strcmp(p->data,node->data)==0)
+	{
+		head=p->next;
+		free(p);
 	}
+	else	//删除非头节点
+	{
+		while(q!=NULL)
+		{
+			if(strcmp(q->data,node->data)==0)
+			{	
+				p->next=q->next;
+				free(q);
+				break;
+			}		
+			p=q;
+			q=q->next;	
+		}
+	}
+	return head;
 }
 
 //获取链表中的一个节点
@@ -96,7 +80,6 @@ void printNode(Link_Node_Ptr head)
 }
 
 //比较前面的hash值是否有相同，有一样的表示不可取，返回1，没有相同的返回0
-
 int hashCompare(int i,Link_Node_Ptr x)
 {
 	int j;
@@ -107,106 +90,5 @@ int hashCompare(int i,Link_Node_Ptr x)
 	return 0;
 }
 
-//找到对应hash值最小的第一个bucket
-int hashMinIndex(Link_Node_Ptr node)
-{
-	int i,j,index;
-	uint32_t k;
-	int min[HASH_FUN_COUNT];
-	for(i=0;i<HASH_FUN_COUNT;i++)
-	{
-		min[i] = hashFun(i,(uint8_t*)node->data,strlen(node->data),HASH_TABLE_LEN);
-	}
-	k = uint32_t_max;
-	for(j=0;j<HASH_FUN_COUNT;j++)
-	{
-		if(k>=Hash_Table[min[j]]->counter)
-		{
-			k = Hash_Table[min[j]]->counter;
-		}
-	}
-	index = HASH_TABLE_LEN;
-	for(j=0;j<HASH_FUN_COUNT;j++)
-	{
-		if(k==Hash_Table[min[j]]->counter && index>=min[j])
-		{
-			index = min[j];
-		}
-	}
-	return index;
-}
 
-void insertItem(char *data)
-{
-	int i;
-	int index;
-	Link_Node_Ptr node;
-	Link_Node_Ptr x = createNode(data);
-	Link_Node_Ptr Y = insertNode(NULL,x);
-	for(i=0;i<HASH_FUN_COUNT;i++)
-	{
-		if(hashCompare(i,x)==0)
-		{
-			int bucket = hashFun(i,(uint8_t*)x->data,strlen(x->data),HASH_TABLE_LEN);
-			Y = insertNode(Hash_Table[bucket]->node,Y);
-			Hash_Table[bucket]->node = NULL;
-			Hash_Table[bucket]->counter ++;
-		}
-	}
-	while((node=getNode(&Y)))
-	{
-		index = hashMinIndex(node);
-		Hash_Table[index]->node = insertNode(Hash_Table[index]->node,node);
-	}	
-}
-
-void deleteItem(char *data)
-{
-	int i;
-	int index;
-	Link_Node_Ptr node;
-	Link_Node_Ptr x = createNode(data);
-	Link_Node_Ptr Y = NULL;
-		if(hashCompare(i,x)==0)
-		{
-			int bucket = hashFun(i,(uint8_t*)x->data,strlen(x->data),HASH_TABLE_LEN);
-			
-
-			
-			Y = insertNode(Hash_Table[bucket]->node,Y);
-			Hash_Table[bucket]->counter --;
-			Hash_Table[bucket]->node = NULL;
-		}
-
-
-void printTable()
-{
-	int i;
-	for(i=0;i<HASH_TABLE_LEN;i++)
-	{
-		printf("[%d]: (%d)",i,Hash_Table[i]->counter);
-		printNode(Hash_Table[i]->node);
-		printf("\n");
-	}
-}
-
-
-void main()
-{
-	initTable();
-	char s[]="123";
-	insertItem(s);
-	printTable();
-	printf("\n");
-	char s2[]="233";
-	insertItem(s2);
-	printTable();
-	printf("\n");
-	char s3[]="233";
-	insertItem(s3);
-	printTable();
-	
-	printf("\n");
-
-}
 

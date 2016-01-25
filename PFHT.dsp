@@ -91,6 +91,10 @@ SOURCE=.\hash.cpp
 
 SOURCE=.\hashFunc.cpp
 # End Source File
+# Begin Source File
+
+SOURCE=.\item.cpp
+# End Source File
 # End Group
 # Begin Group "Header Files"
 
